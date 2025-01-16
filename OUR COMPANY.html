@@ -1,0 +1,342 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<style>
+body {
+  font-family: 'Times New Roman', sans-serif;
+  margin: 0;
+}
+
+html {
+  box-sizing: border-box;
+}
+
+*, *:before, *:after {
+  box-sizing: inherit;
+}
+
+.container {
+  padding: 0 16px;
+}
+
+.container::after, .row::after {
+  content: "";
+  clear: both;
+  display: table;
+}
+
+.about-section {
+  padding: 50px;
+  text-align: center;
+  background-color: #474e5d;
+  color: white;
+}
+.about-section:hover{
+    background-color: #ddd;
+    color:black;
+}
+
+.row {
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
+}
+
+.column {
+  width: 100%;
+  padding: 0 8px;
+  margin-bottom: 16px;
+}
+
+.card {
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+  text-align: center;
+  margin: 8px;
+  width: 100%;
+}
+
+.card img {
+  width: 50%;
+}
+
+.title {
+  color: grey;
+}
+
+.button {
+  border: none;
+  outline: 0;
+  display: inline-block;
+  padding: 8px;
+  color: white;
+  background-color: #000;
+  text-align: center;
+  cursor: pointer;
+  width: 100%;
+}
+
+.button:hover {
+  background-color: #555;
+}
+
+.center-row {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  padding: 0 16px;
+}
+
+.center-column {
+  width: 33.33%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+@media screen and (max-width: 650px) {
+  .row {
+    flex-direction: column;
+  }
+  .column {
+    width: 100%;
+  }
+
+  .center-column {
+    width: 100%;
+  }
+}
+
+h4 {
+  text-align: center;
+  margin: 0 auto;
+  width: 80%;
+  padding: 20px 0;
+}
+
+p {
+  margin: 0 auto;
+  font-style: Baguet Script;
+  width: 80%;
+  padding: 20px 0;
+  line-height: 1.5;
+}
+
+
+.vision-section {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 20px;
+  background-color: #f4f4f9; 
+}
+
+.vision-text {
+  width: 60%;
+}
+
+.vision-img {
+  width: 30%;
+  text-align: right;
+}
+
+.mission-section {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 20px;
+  background-color: #e0f7fa; 
+}
+
+.mission-text {
+  width: 60%;
+}
+
+.mission-img {
+  width: 30%;
+  text-align: left;
+}
+
+.centered-container{
+  display: flex;
+  justify-content:center;
+  align-items:center;
+}
+.centered-container li {
+  text-align: left;
+  line-height: 1.5;
+}
+
+.journey-section {
+  background-color: #ffecb3; 
+  padding: 20px;
+}
+
+.what-is-section {
+  background-color: #fff3e0; 
+  padding: 20px;
+}
+
+.objectives-section {
+  background-color: #fcfbfd; 
+  padding: 20px;
+}
+#mySidenav a {
+  position: absolute;
+  left: -80px;
+  transition: 0.3s;
+  padding: 15px;
+  width: 100px;
+  text-decoration: none;
+  font-size: 20px;
+  color: white;
+  border-radius: 0 5px 5px 0;
+}
+
+#mySidenav a:hover {
+  left: 0;
+}
+
+#about {
+  top: 20px;
+  background-color: #8d1233;
+}
+
+
+</style>
+</head>
+<body>
+
+<div class="about-section">
+  <font size="30">
+    <p><b>About Us</b></p>
+  </font>
+
+  <font size="5">
+  <p>“Embrace Tradition, Celebrate Style.”</p>
+ </font>
+</div>
+<div id="mySidenav" class="sidenav">
+    <a href="index.html" id="about">Back</a>
+</div>
+<h1 style="text-align:center">Our Team</h1>
+
+<div class="center-row">
+  <div class="center-column">
+    <div class="card">
+      <img src="aina.jpg" alt="najihah">
+      <div class="container">
+        <h2>Aina   <sup>Rafhan</sup></h2>
+        <p class="title">Chief Executive Operation (CEO)</p>
+        <a href="mailto:sofearafhan@gmail.com">sofearafhan@gmail.com</a>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="row">
+  <div class="column" style="width:33.33%">
+    <div class="card">
+      <img src="rifhanis.jpg" alt="najihah">
+      <div class="container">
+        <h2>Rifhanis   <sup>Resman</sup></h2>
+        <p class="title">Finance</p>
+        <a href="mailto:irdinarifhanis@gmail.com">irdinarifhanis@gmail.com</a>
+      </div>
+    </div>
+  </div>
+
+  <div class="column" style="width:33.33%">
+    <div class="card">
+      <img src="najwa.jpg" alt="najihah">
+      <div class="container">
+        <h2>Najwa   <sup>Faizal</sup></h2>
+        <p class="title">Designer</p>
+        <a href="mailto:najwaalya5zal@gmail.com">najwaalya5zal@gmail.com</a>
+      </div>
+    </div>
+  </div>
+
+  <div class="column" style="width:33.33%">
+    <div class="card">
+      <img src="jihah.jpg" alt="najihah">
+      <div class="container">
+        <h2>Najihah   <sup>Sai'idan</sup></h2>
+        <p class="title">Customer Services</p>
+        <a href="mailto:najihahsaiidan09@gmail.com">najihahsaiidan09@gmail.com</a>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="what-is-section">
+  <h2 style="text-align:center">What is Melisa ?</h2>
+  <font color="orange">
+    <h4>Melisa – A blend of "Melayu" and "sasi" (meaning moon or radiant), symbolizing a radiant or beautiful Malay girl with cultural depth</h4>
+  </font>
+</div>
+
+<div class="journey-section">
+  <h2 style="text-align:center">Our Journey</h2>
+  <center>
+    <p>As the world shifted to a new reality, we saw an opportunity to adapt and innovate. We recognized the need to bring traditional attire directly to the homes of those who cherished it. Starting with the iconic Baju Kurung Pesak, Johor traditional baju kurung and we ventured into the world of e-commerce, offering quality pieces that blended cultural heritage with modern convenience. The business grew organically, with a commitment to providing affordable yet stylish traditional wear during a time when going to physical stores was no longer an option.
+
+    As we found our footing, we expanded our collection to include other traditional garments like Baju Batik, Baju Kebaya, and Baju Kurung Kedah.
+
+    What began as a small online venture has now blossomed into a thriving business, driven by a passion for bringing culture and tradition to the digital marketplace.</p>
+  </center>
+  <div class="centered-container">
+    <ul>
+    <li><b>Founded:</b>  2023</li>
+    <li><b>Headquarters (HQ):</b>  Pasir Gudang, Johor</li>
+    <li><b>Phone:</b>  011-27884410</li>
+  </ul>
+</div>
+</div>
+
+<div class="vision-section">
+  <div class="vision-text">
+    <center><h2>Vision</h2></center>
+    <p>To be Malaysia’s premier brand that celebrates and revives traditional cultural attire, such as baju kurung, by blending timeless heritage with contemporary designs, offering every Malaysian the opportunity to wear their cultural pride with style, elegance, and confidence.</p>
+  </div>
+  <div class="vision-img">
+    <img src="kurung1.jpg" width="350" height="400" alt="Baju Kurung Image">
+  </div>
+</div>
+
+<div class="mission-section">
+  <div class="mission-img">
+    <img src="kurung2.jpg" class="image" usemap="#kurung2Map" style="width:500px; height:400px; object-fit: cover; border-radius:10px;">
+    <map name="kurung2Map">
+      <area 
+        shape="default"
+        coords="0, 0, 300, 300"
+        href="https://gempak.com/intrend/tahu-tak-asal-usul-baju-kurung-rekaan-anggun-stail-kekal-sepanjang-zaman-selalu-beli-siap-ke-tempah-49808"
+        target="_blank"
+        alt="kurung2">
+    </map>
+  </div>
+  <div class="mission-text">
+    <center><h2>Mission</h2></center>
+    <p>“Our mission is to provide high-quality, culturally rich clothing like baju kurung that blends traditional craftsmanship with modern style. We are committed to offering a diverse range of designs that cater to every occasion, ensuring our customers can express their cultural identity with pride and confidence. Through ethical practices, local craftsmanship, and a focus on inclusivity, we aim to make cultural attire accessible, fashionable, and sustainable for all Malaysians.”</p>
+  </div>
+</div>
+
+<div class="objectives-section">
+  <h2 style="text-align:center">Our Objectives</h2>
+  <center>
+    <div class="centered-container">
+      <ol>
+        <li>To offer modernized, high-quality baju kurung that showcase Malaysia’s rich cultural traditions.</li>
+        <li>To make culturally inspired clothing available and affordable for Malaysians of all backgrounds and sizes.</li>
+        <li>To foster a sense of pride and connection to cultural heritage through events and collaborations.</li>
+        <li>To continually evolve and introduce fresh, stylish designs that blend traditional aesthetics with modern trends.</li>
+        <li>To build long-term relationships with customers by consistently delivering quality products and exceptional service.</li>
+      </ol>
+    </div>
+  </center>
+</div>
+
+</body>
+</html>

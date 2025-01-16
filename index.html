@@ -1,0 +1,747 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8" />
+    <title> MELISA </title>
+</head>
+<style>
+  body {
+  margin: 0;
+  font-family: Arial, Helvetica, sans-serif;
+}
+header {
+    background-color: #e6c7d3;
+    color: white;
+    padding: 20px 0;
+    text-align: center;
+}
+h1 {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 2em;
+      margin: 0;
+    }
+
+    h1 img {
+      margin-left: 0px; 
+    }
+
+header:hover{
+    background-color: #ddd;
+    color: black;
+}
+
+.topnav {
+  overflow: hidden;
+  background-color: #e6c7d3;
+  justify-content: center;
+  display: flex;
+}
+.topnav {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: sticky;
+    top: 0;
+    z-index: 1000;
+}
+
+.cart-link {
+  position: absolute;
+  right: 0;
+  background-color: #dc91ae;
+  color: white;
+  border-radius: 5px;
+  padding: 10px 20px;
+  font-size: 16px;
+  text-decoration: none;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.cart-link:hover {
+  background-color: #882154;
+}
+.size-quantity-modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.5);
+            justify-content: center;
+            align-items: center;
+            z-index: 1001;
+        }
+
+        .modal-content {
+            background-color: white;
+            padding: 20px;
+            border-radius: 10px;
+            width: 300px;
+            text-align: center;
+        }
+
+        .modal-content input {
+            margin-bottom: 10px;
+            padding: 5px;
+            width: 100%;
+        }
+
+        .modal-content button {
+            background-color: #dc91ae;
+            color: white;
+            padding: 10px;
+            border: none;
+            cursor: pointer;
+            border-radius: 5px;
+            width: 100%;
+        }
+
+        .modal-content button:hover {
+            background-color: #c87a92;
+        }
+
+        .cart-container {
+            display: none;
+            position: fixed;
+            left: 50%;
+            transform: translateX(-50%);
+            top: 20px; 
+            z-index: 1000; 
+            background-color: white;
+            border: 1px solid #ddd;
+            border-radius: 10px;
+            padding: 10px;
+            width: 300px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+
+        .cart-container h3 {
+            margin-top: 0;
+            font-size: 18px;
+        }
+
+        .cart-item {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 10px 0;
+            border-bottom: 1px solid #ddd;
+        }
+
+        .cart-item:last-child {
+            border-bottom: none;
+        }
+
+.cart-total {
+    text-align: right;
+    font-weight: bold;
+    margin-top: 10px;
+}
+
+.remove-button {
+    background-color: #dc3545;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    padding: 5px 10px;
+    cursor: pointer;
+    font-size: 12px;
+}
+
+.remove-button:hover {
+    background-color: #c82333;
+}
+
+.purchase-button {
+    background-color: #007bff;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    padding: 10px 20px;
+    cursor: pointer;
+    font-size: 16px;
+    display: block;
+    margin: 10px auto 0;
+    text-align: center;
+}
+
+.purchase-button:hover {
+    background-color: #0056b3;
+}
+
+.close-cart {
+    background-color: #6c757d;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    padding: 5px 10px;
+    font-size: 14px;
+    cursor: pointer;
+    float: right;
+}
+
+.close-cart:hover {
+    background-color: #5a6268;
+}
+.cart-content {
+    background-color: white;
+    border-radius: 10px;
+    padding: 20px;
+    width: 300px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); 
+}
+
+
+.close-cart {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    background-color: #dc91ae;
+    color: white;
+    border: none;
+    font-size: 16px;
+    cursor: pointer;
+    padding: 5px 10px;
+    border-radius: 5px;
+}
+
+.close-cart:hover {
+    background-color: #882154;
+}
+
+.remove-item {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    background-color: #dc91ae;
+    color: white;
+    border: none;
+    font-size: 16px;
+    cursor: pointer;
+    padding: 5px 10px;
+    border-radius: 5px;
+}
+
+.remove-item:hover {
+    background-color: #882154;
+}
+
+.cart-items {
+    max-height: 300px; 
+    overflow-y: auto; 
+    padding-right: 10px; 
+}
+
+
+.cart-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px;
+    margin: 10px 0;
+    border-bottom: 1px solid #ddd;
+    font-size: 16px;
+}
+
+.cart-total {
+    margin-top: 20px;
+    font-weight: bold;
+    font-size: 18px;
+    display: flex;
+    justify-content: space-between;
+}
+
+.empty-cart {
+    font-style: italic;
+    color: #888;
+    text-align: center;
+    font-size: 18px;
+}
+
+.purchase-button {
+    background-color: #dc91ae;
+    color: white;
+    padding: 10px 20px;
+    border: none;
+    cursor: pointer;
+    font-size: 16px;
+    border-radius: 5px;
+    display: block;
+    width: 100%;
+    margin-top: 20px;
+}
+
+.purchase-button:hover {
+    background-color: #c87a92;
+}
+.topnav a {
+  float: left ;
+  display: block;
+  color: #f2f2f2;
+  text-align: center;
+  padding: 14px 16px;
+  text-decoration: none;
+  font-size: 17px;
+  
+}
+
+.topnav a:hover {
+  background-color: #ddd;
+  color: black;
+}
+
+.topnav a.active {
+  background-color: #dc91ae;
+  color: white;
+}
+
+.topnav .icon {
+  display: none;
+}
+
+@media screen and (max-width: 600px) {
+  .topnav a:not(:first-child) {display: none;}
+  .topnav a.icon {
+    float: right;
+    display: block;
+  }
+}
+
+@media screen and (max-width: 600px) {
+  .topnav.responsive {position: relative;}
+  .topnav.responsive .icon {
+    position: absolute;
+    right: 0;
+    top: 0;
+  }
+  .topnav.responsive a {
+    float: none;
+    display: block;
+    text-align: left;
+  }
+}
+body {
+    background-image: url('wallpaper website.jpg');
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    background-size: cover;
+}
+.image-container img {
+      width: 50px; 
+      height: 50;
+      mask-image: url('mask.png') ; 
+      -webkit-mask-image: url('mask.png');
+      background: none
+      ;
+    }
+.no-bg {
+      mix-blend-mode: multiply; 
+      background-color: transparent; 
+    }
+    
+.bg {
+ 
+  background-image: url("thumbnail.jpg");
+
+  height: 50%;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+* {box-sizing: border-box}
+    body {font-family: Verdana, sans-serif; margin:0}
+    .mySlides {display: none}
+    img {vertical-align: middle;}
+    
+    .slideshow-container {
+      max-width: 1000px;
+      position: relative;
+      margin: auto;
+    }
+    
+    
+    .prev, .next {
+      cursor: pointer;
+      position: absolute;
+      top: 50%;
+      width: 50px; 
+      height: 50px; 
+      padding: 16px;
+      margin-top: -22px;
+      color: white;
+      font-weight: bold;
+      font-size: 18px;
+      transition: 0.6s ease;
+      border-radius: 0 4px 4px 0;
+      user-select: none;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      background-color: rgba(0, 0, 0, 0.5); 
+    }
+    
+    
+    .next {
+      right: 0;
+      border-radius: 4px 0 0 4px;
+    }
+    
+    
+    .prev:hover, .next:hover {
+      background-color: rgba(0, 0, 0, 0.8);
+    }
+    
+    
+    .text {
+      color: #f2f2f2;
+      font-size: 15px;
+      padding: 8px 12px;
+      position: absolute;
+      bottom: 8px;
+      width: 100%;
+      text-align: center;
+    }
+    
+    
+    .numbertext {
+      color: #f2f2f2;
+      font-size: 12px;
+      padding: 8px 12px;
+      position: absolute;
+      top: 0;
+    }
+    
+    
+    .dot {
+      cursor: pointer;
+      height: 10px;
+      width: 10px;
+      margin: 0 2px;
+      background-color: #bbb;
+      border-radius: 50%;
+      display: inline-block;
+      transition: background-color 0.6s ease;
+    }
+    
+    .active, .dot:hover {
+      background-color: #928f8f;
+    }
+    
+   
+    .fade {
+      animation-name: fade;
+      animation-duration: 1.5s;
+    }
+    
+    @keyframes fade {
+      from {opacity: .4} 
+      to {opacity: 1}
+    }
+    
+    @media only screen and (max-width: 300px) {
+      .prev, .next, .text {font-size: 11px}
+    
+  }
+  footer {
+      text-align: center;
+      padding: 10px;
+      background-color: #dc91ae;
+      color: white;
+      font-family: 'times new roman', sans-serif;
+      font-size: 18px;
+    }
+
+    footer a {
+      color: rgb(219, 157, 219);
+      text-decoration: none;
+    }
+
+    footer a:hover {
+      text-decoration: underline;
+    }
+    .scroll-container {
+    width: 720px; 
+    height: 500px; 
+    overflow-x: auto; 
+    overflow-y: hidden; 
+    white-space: nowrap; 
+    border: 15px solid #333; 
+    padding: 5px;
+    box-sizing: border-box; 
+    background-color: #333; 
+    border-radius: 25px; 
+}
+
+.scroll-container img {
+    display: inline-block; 
+    margin-right: 10px; 
+}
+.topnav iframe {
+  position: absolute;
+  left: 0; 
+  top: 50%;
+  transform: translateY(-50%); 
+  margin-left: 10px; 
+}
+</style>
+</head>
+<body>
+    <header>
+        <Font face="Times New Roman">
+        <h1>
+            Welcome to <a href="OUR COMPANY.html"><img src="Melisa 2.jpg" alt="Sample Image" class="no-bg" width="150" height="100"></a></h1>
+    </header>
+    <div class="topnav" id="myTopnav">
+      <iframe src="https://free.timeanddate.com/clock/i9q07dd1/n3533/tlmy40/fn5/fc330/tce6c7d3/pce6c7d3/ftb/bas0/bacdc91ae/pa4/tt0/tw0/tm1/th2/tb4" frameborder="0" width="102" height="41"></iframe>
+        <a href="index.html" class="active">Home</a>
+        <a href="COLLECTION.html">Collection</a>
+        <a href="#" class="cart-link" onclick="toggleCart()">🛒</a>
+      </div>
+      <div id="cart-container" class="cart-container" style="display:none;">
+        <button class="close-cart" onclick="toggleCart()">Close</button>
+        <h3>Your Shopping Cart</h3>
+        <div id="cart-items" class="cart-items">
+            <p class="empty-cart">Your cart is empty.</p>
+        </div>
+        <div id="cart-total" class="cart-total"></div>
+        <button id="purchase-button" class="purchase-button" onclick="purchase()" style="display: none;">Purchase</button>
+    </div>
+          <i class="fa fa-bars"></i>
+      </div>
+    </Font>
+    <br>
+        <body>
+          <div class="slideshow-container">
+            <div class="mySlides fade">
+                <div class="numbertext">1 / 3</div>
+                <video style="width:100%; height:500px;" autoplay muted loop>
+                    <source src="VIDEO.mp4" type="video/mp4">
+                    <source src="VIDEO.mp4" type="video/ogg">
+                   
+                </video>
+            </div>
+          
+      
+        <div class="mySlides fade">
+          <div class="numbertext">2 / 3</div>
+          <img src="raya2.jpg" style="width:100%"  width="500" height="400">
+        </div>
+        
+        <div class="mySlides fade">
+          <div class="numbertext">3 / 3</div>
+          <img src="Sale.jpg" style="width:100%"  width="500" height="400">
+        </div>
+        
+        <a class="prev" onclick="plusSlides(-1)">❮</a>
+        <a class="next" onclick="plusSlides(1)">❯</a>
+        
+        </div>
+        <br>
+        
+        <div style="text-align:center">
+          <span class="dot" onclick="currentSlide(1)"></span> 
+          <span class="dot" onclick="currentSlide(2)"></span> 
+          <span class="dot" onclick="currentSlide(3)"></span>
+        </div>
+        
+        <script>
+        let slideIndex = 1;
+        showSlides(slideIndex);
+        
+        function plusSlides(n) {
+          showSlides(slideIndex += n);
+        }
+        
+        function currentSlide(n) {
+          showSlides(slideIndex = n);
+        }
+        
+        function showSlides(n) {
+          let i;
+          let slides = document.getElementsByClassName("mySlides");
+          let dots = document.getElementsByClassName("dot");
+          if (n > slides.length) {slideIndex = 1}    
+          if (n < 1) {slideIndex = slides.length}
+          for (i = 0; i < slides.length; i++) {
+            slides[i].style.display = "none";  
+          }
+          for (i = 0; i < dots.length; i++) {
+            dots[i].className = dots[i].className.replace(" active", "");
+          }
+          slides[slideIndex-1].style.display = "block";  
+          dots[slideIndex-1].className += " active";
+        }
+        </script>
+        <br>
+        <br>
+        <br>
+
+        <script>
+          let cart = JSON.parse(localStorage.getItem('cart')) || [];
+      
+          function openSizeQuantityModal(itemName, itemPrice) {
+              
+              window.currentItem = { name: itemName, price: itemPrice };
+              toggleSizeQuantityModal();
+          }
+      
+          function toggleSizeQuantityModal() {
+              const modal = document.getElementById('size-quantity-modal');
+              modal.style.display = modal.style.display === 'flex' ? 'none' : 'flex';
+          }
+      
+          function addToCartFromModal() {
+              const size = document.getElementById('size-select').value;
+              const quantity = parseInt(document.getElementById('quantity-input').value);
+      
+              if (!quantity || quantity <= 0) {
+                  alert("Please choose a valid quantity.");
+                  return;
+              }
+      
+              const item = window.currentItem;
+              const itemNameWithSize = `${item.name} (${size})`;
+      
+              
+              const existingItem = cart.find(cartItem => cartItem.name === itemNameWithSize);
+      
+              if (existingItem) {
+                  
+                  existingItem.quantity += quantity;
+              } else {
+                  
+                  cart.push({ name: itemNameWithSize, price: item.price, quantity: quantity });
+              }
+      
+              alert(`${quantity} item(s) of ${item.name} (${size}) added to cart!`);
+              updateCartDisplay();
+              saveCartToLocalStorage();
+              toggleSizeQuantityModal();
+          }
+      
+          function updateCartDisplay() {
+              const cartItemsContainer = document.getElementById('cart-items');
+              const cartTotalContainer = document.getElementById('cart-total');
+              const purchaseButton = document.getElementById('purchase-button');
+      
+              cartItemsContainer.innerHTML = '';  
+      
+              if (cart.length === 0) {
+                  cartItemsContainer.innerHTML = '<p class="empty-cart">Your cart is empty.</p>';
+                  cartTotalContainer.innerHTML = '';
+                  purchaseButton.style.display = 'none';
+              } else {
+                  let total = 0;
+                  cart.forEach((item, index) => {
+                      const cartItem = document.createElement('div');
+                      cartItem.classList.add('cart-item');
+                      cartItem.innerHTML = `
+                          <p>${item.name} - RM${item.price} x ${item.quantity}</p>
+                          <button onclick="removeFromCart(${index})">Remove</button>
+                      `;
+                      cartItemsContainer.appendChild(cartItem);
+                      total += item.price * item.quantity;  
+                  });
+      
+                  cartTotalContainer.innerHTML = `<p>Total: RM${total}</p>`;
+                  purchaseButton.style.display = 'block';
+              }
+          }
+      
+          function removeFromCart(index) {
+              cart.splice(index, 1);
+              updateCartDisplay();
+              saveCartToLocalStorage();
+          }
+      
+          function saveCartToLocalStorage() {
+              localStorage.setItem('cart', JSON.stringify(cart));
+          }
+      
+          function purchase() {
+              alert('Thank you for your purchase!');
+              cart = [];
+              updateCartDisplay();
+              saveCartToLocalStorage();
+          }
+      
+          function toggleCart() {
+              const cartContainer = document.getElementById('cart-container');
+              cartContainer.style.display = cartContainer.style.display === 'block' ? 'none' : 'block';
+          }
+      
+          updateCartDisplay();  
+          function purchase() {
+      
+      localStorage.setItem('cart', JSON.stringify(cart));
+  
+      
+      window.location.href = 'CUSTOMER DETAIL.html';  
+  }
+      </script>
+<br>
+<br>
+<br>
+<h1>
+  <p><u>MELISA'S HOT SALE!</u></p>
+</h1>
+<center>
+  <div class="scroll-container">
+    <img src="Ajwa.jpg" alt="Cinque Terre" width="500" height="500">
+    <img src="Kuntom.jpg" alt="Forest" width="500" height="500">
+    <img src="Ena.jpg" alt="Northern Lights" width="500" height="500">
+    <img src="Olive.jpg" alt="Mountains" width="500" height="500">
+    <img src="Seroja.jpg" alt="Mountains" width="500" height="500">
+</div>
+</center>
+<br>
+<br>
+<br>
+<br>
+<h1>
+  <p><a href="COLLECTION.html">MELISA'S COLLECTION</a>
+</h1>
+<center>
+  <div class="scroll-container">
+    <img src="Ajwa.jpg" alt="Cinque Terre" width="500" height="500">
+    <img src="Kuntom.jpg" alt="Forest" width="500" height="500">
+    <img src="Ena.jpg" alt="Northern Lights" width="500" height="500">
+    <img src="Olive.jpg" alt="Mountains" width="500" height="500">
+    <img src="Seroja.jpg" alt="Mountains" width="500" height="500">
+    <img src="mermaid.jpg" alt="Cinque Terre" width="500" height="500">
+    <img src="anidri.jpg" alt="Forest" width="500" height="500">
+    <img src="ijan.jpg" alt="Northern Lights" width="500" height="500">
+    <img src="wara.jpg" alt="Mountains" width="500" height="500">
+    <img src="kesuma.jpg" alt="Mountains" width="500" height="500">
+    <img src="bunga.jpg" alt="Mountains" width="500" height="500">
+</div>
+</center>
+<br>
+<center>
+  <audio controls autoplay>
+    <source src="Maya Karin - Magika (Magika OST) Official Lyric Video [ ezmp3.cc ].mp3" type="audio/ogg">
+    <source src="Maya Karin - Magika (Magika OST) Official Lyric Video [ ezmp3.cc ].mp3" type="audio/mpeg">
+  </audio>
+</center>
+<br>
+<br>
+<footer>
+  <P>Contact Us:</P>
+  <a href="https://www.instagram.com/busana2melisa" class="contact-item" target="_blank">
+    <img src="https://img.icons8.com/ios-filled/50/ffffff/instagram-new.png" alt="Instagram">
+    </a>
+
+  <a href="mailto:najihahsaiidan09@gmail.com" class="contact-item">
+    <img src="https://img.icons8.com/ios-filled/50/ffffff/new-post.png" alt="Email">
+  </a>
+    <p><sup>&copy;</sup> 2023 MELISA. All rights reserved.</p>
+</footer>
+
+</body>
+</html>

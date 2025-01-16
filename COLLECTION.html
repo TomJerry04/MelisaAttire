@@ -1,0 +1,691 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <title> MELISA - COLLECTION </title>
+    <style>
+        body {
+            margin: 0;
+            font-family: Arial, Helvetica, sans-serif;
+            background-image: url('wallpaper website.jpg');
+            background-repeat: no-repeat;
+            background-attachment: fixed;
+            background-size: cover;
+        }
+
+        header {
+            background-color: #e6c7d3;
+            color: white;
+            padding: 20px 0;
+            text-align: center;
+        }
+
+        header:hover {
+            background-color: #ddd;
+            color: black;
+        }
+
+        header h1 {
+            font-size: 2em;
+            margin: 0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .cart-link {
+            position: absolute;
+            right: 0;
+            background-color: #dc91ae;
+            color: white;
+            border-radius: 5px;
+            padding: 10px 20px;
+            font-size: 16px;
+            text-decoration: none;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .cart-link:hover {
+            background-color: #882154;
+        }
+
+        .topnav {
+            overflow: hidden;
+            background-color: #e6c7d3;
+            justify-content: center;
+            display: flex;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+        }
+
+        .topnav a {
+            display: block;
+            color: #f2f2f2;
+            text-align: center;
+            padding: 14px 16px;
+            text-decoration: none;
+            font-size: 17px;
+        }
+
+        .topnav a:hover {
+            background-color: #ddd;
+            color: black;
+        }
+
+        .topnav a.active {
+            background-color: #dc91ae;
+            color: white;
+        }
+
+        .gallery {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 15px;
+            margin: 30px auto;
+            max-width: 1200px;
+        }
+
+        .image-container {
+            position: relative;
+            width: 300px;
+            height: 400px;
+            border-radius: 10px;
+            overflow: hidden;
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+
+        .image-container:hover {
+            transform: scale(1.05);
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+        }
+
+        .image {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            border-radius: 10px;
+        }
+
+        .hover-text {
+            position: absolute;
+            bottom: 10px;
+            left: 10px;
+            background-color: rgba(0, 0, 0, 0.6);
+            color: white;
+            padding: 5px 10px;
+            border-radius: 5px;
+            display: none;
+        }
+
+        .image-container:hover .hover-text {
+            display: block;
+        }
+
+        .add-to-cart-button {
+            position: absolute;
+            bottom: 10px;
+            right: 10px;
+            background-color: #dc91ae;
+            color: white;
+            padding: 10px;
+            border: none;
+            cursor: pointer;
+            border-radius: 5px;
+        }
+
+        .add-to-cart-button:hover {
+            background-color: #c87a92;
+        }
+
+        footer {
+            text-align: center;
+            padding: 10px;
+            background-color: #dc91ae;
+            color: white;
+            font-size: 18px;
+        }
+
+        footer a {
+            color: rgb(219, 157, 219);
+            text-decoration: none;
+        }
+
+        footer a:hover {
+            text-decoration: underline;
+        }
+
+        .size-quantity-modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.5);
+            justify-content: center;
+            align-items: center;
+            z-index: 1001;
+        }
+
+        .modal-content {
+            background-color: white;
+            padding: 20px;
+            border-radius: 10px;
+            width: 300px;
+            text-align: center;
+        }
+
+        .modal-content input {
+            margin-bottom: 10px;
+            padding: 5px;
+            width: 100%;
+        }
+
+        .modal-content button {
+            background-color: #dc91ae;
+            color: white;
+            padding: 10px;
+            border: none;
+            cursor: pointer;
+            border-radius: 5px;
+            width: 100%;
+        }
+
+        .modal-content button:hover {
+            background-color: #c87a92;
+        }
+
+        .cart-container {
+            display: none;
+            position: fixed;
+            left: 50%;
+            transform: translateX(-50%);
+            top: 20px; 
+            z-index: 1000; 
+            background-color: white;
+            border: 1px solid #ddd;
+            border-radius: 10px;
+            padding: 10px;
+            width: 300px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+
+        .cart-container h3 {
+            margin-top: 0;
+            font-size: 18px;
+        }
+
+        .cart-item {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 10px 0;
+            border-bottom: 1px solid #ddd;
+        }
+
+        .cart-item:last-child {
+            border-bottom: none;
+        }
+
+.cart-total {
+    text-align: right;
+    font-weight: bold;
+    margin-top: 10px;
+}
+
+.remove-button {
+    background-color: #dc3545;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    padding: 5px 10px;
+    cursor: pointer;
+    font-size: 12px;
+}
+
+.remove-button:hover {
+    background-color: #c82333;
+}
+
+.purchase-button {
+    background-color: #007bff;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    padding: 10px 20px;
+    cursor: pointer;
+    font-size: 16px;
+    display: block;
+    margin: 10px auto 0;
+    text-align: center;
+}
+
+.purchase-button:hover {
+    background-color: #0056b3;
+}
+
+.close-cart {
+    background-color: #6c757d;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    padding: 5px 10px;
+    font-size: 14px;
+    cursor: pointer;
+    float: right;
+}
+
+.close-cart:hover {
+    background-color: #5a6268;
+}
+
+
+
+.cart-content {
+    background-color: white;
+    border-radius: 10px;
+    padding: 20px;
+    width: 300px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); 
+}
+
+
+.close-cart {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    background-color: #dc91ae;
+    color: white;
+    border: none;
+    font-size: 16px;
+    cursor: pointer;
+    padding: 5px 10px;
+    border-radius: 5px;
+}
+
+.close-cart:hover {
+    background-color: #882154;
+}
+
+.remove-item {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    background-color: #dc91ae;
+    color: white;
+    border: none;
+    font-size: 16px;
+    cursor: pointer;
+    padding: 5px 10px;
+    border-radius: 5px;
+}
+
+.remove-item:hover {
+    background-color: #882154;
+}
+
+.cart-items {
+    max-height: 300px; 
+    overflow-y: auto; 
+    padding-right: 10px; 
+}
+
+
+.cart-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px;
+    margin: 10px 0;
+    border-bottom: 1px solid #ddd;
+    font-size: 16px;
+}
+
+.cart-total {
+    margin-top: 20px;
+    font-weight: bold;
+    font-size: 18px;
+    display: flex;
+    justify-content: space-between;
+}
+
+.empty-cart {
+    font-style: italic;
+    color: #888;
+    text-align: center;
+    font-size: 18px;
+}
+
+.purchase-button {
+    background-color: #dc91ae;
+    color: white;
+    padding: 10px 20px;
+    border: none;
+    cursor: pointer;
+    font-size: 16px;
+    border-radius: 5px;
+    display: block;
+    width: 100%;
+    margin-top: 20px;
+}
+
+.purchase-button:hover {
+    background-color: #c87a92;
+}
+
+.shopping-item {
+    display: flex;
+    justify-content: space-between;
+    padding: 10px;
+    font-size: 16px;
+    border-bottom: 1px solid #f0f0f0;
+}
+
+.add-item-button {
+    background-color: #87CEEB;
+    color: white;
+    padding: 8px 16px;
+    font-size: 14px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    margin-top: 10px;
+}
+
+.add-item-button:hover {
+    background-color: #66b3ff;
+}
+
+.shopping-list-title {
+    font-size: 20px;
+    font-weight: bold;
+    margin-bottom: 20px;
+    color: #333;
+}
+
+.add-item-input {
+    width: 80%;
+    padding: 8px;
+    margin-right: 10px;
+    font-size: 16px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+}
+
+.shopping-list-container {
+    padding: 15px;
+    background-color: #f9f9f9;
+    border-radius: 8px;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+}
+
+.item-count {
+    font-size: 14px;
+    margin-top: 5px;
+    text-align: center;
+    color: #777;
+}
+.no-bg {
+      mix-blend-mode: multiply; 
+      background-color: transparent; 
+    }
+    
+.bg {
+ 
+  background-image: url("thumbnail.jpg");
+
+  height: 50%;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+</style>
+</head>
+<body>
+    <header>
+        <Font face="Times New Roman">
+        <h1>
+            Welcome to <a href="OUR COMPANY.html"><img src="Melisa 2.jpg" alt="Sample Image" class="no-bg" width="150" height="100"></a></h1>
+    </header>
+    <font face="Times New Roman">
+    <div class="topnav" id="myTopnav">
+        <a href="index.html">Home</a>
+        <a href="COLLECTION.html" class="active">Collection</a>
+        <a href="#" class="cart-link" onclick="toggleCart()">🛒</a>
+    </div>
+    
+
+    <div id="cart-container" class="cart-container" style="display:none;">
+        <button class="close-cart" onclick="toggleCart()">Close</button>
+        <h3>Your Shopping Cart</h3>
+        <div id="cart-items" class="cart-items">
+            <p class="empty-cart">Your cart is empty.</p>
+        </div>
+        <div id="cart-total" class="cart-total"></div>
+        <button id="purchase-button" class="purchase-button" onclick="purchase()" style="display: none;">Purchase</button>
+    </div>
+    
+    <CENTER><h1><i>BATIK COLLECTION</i></h1></CENTER>
+    
+    <div class="gallery">
+        <div class="image-container">
+            <a href="Batik Collection 1.html"><img src="batik 1.jpg" class="image" alt="Batik Ajwa"></a>
+            <div class="hover-text">Batik Ajwa</div>
+            <button class="add-to-cart-button" onclick="openSizeQuantityModal('Batik Ajwa', 150)">Add to Cart</button>
+        </div>
+    
+        <div class="image-container">
+            <a href="Batik Collection 2.html"><img src="batiklagisatu 1.jpg" class="image" alt="Batik Ena"></a>
+            <div class="hover-text">Batik Ena</div>
+            <button class="add-to-cart-button" onclick="openSizeQuantityModal('Batik Ena', 157)">Add to Cart</button>
+        </div>
+    
+        <div class="image-container">
+            <a href="Batik Collection 3.html"><img src="batik1collection3.jpg" class="image" alt="Batik Ijan"></a>
+            <div class="hover-text">Batik Ijan</div>
+            <button class="add-to-cart-button" onclick="openSizeQuantityModal('Batik Ijan', 150)">Add to Cart</button>
+        </div>
+    </div>
+
+    <CENTER><h1><i>KURUNG COLLECTION</i></h1></CENTER>
+
+    <div class="gallery">
+        <div class="image-container">
+            <a href="Kurung Collection.html"><img src="kurungc2.jpg" class="image" alt="Wara"></a>
+            <div class="hover-text">Wara</div>
+            <button class="add-to-cart-button" onclick="openSizeQuantityModal('Wara', 130)">Add to Cart</button>
+        </div>
+
+        <div class="image-container">
+            <a href="Kurung Collection 2.html"><img src="kurunglagisatu (1).jpg" class="image"  alt="Anidri"></a>
+            <div class="hover-text">Anidri</div>
+            <button class="add-to-cart-button" onclick="openSizeQuantityModal('Anidri', 130)">Add to Cart</button>
+        </div>
+
+        <div class="image-container">
+            <a href="Kurung Collection 3.html"><img src="kurungyanglain(2).jpg" class="image"  alt="Olive"></a>
+            <div class="hover-text">Olive</div>
+            <button class="add-to-cart-button" onclick="openSizeQuantityModal('Olive', 125)">Add to Cart</button>
+        </div>
+    </div>
+
+    <CENTER><h1><i>KEBAYA COLLECTION</i></h1></CENTER>
+
+    <div class="gallery">
+        <div class="image-container">
+            <a href="Kebaya Collection 2.html"><img src="kebayalagisatu2.jpg" class="image" alt="Mermaid"></a>
+            <div class="hover-text">Mermaid</div>
+            <button class="add-to-cart-button" onclick="openSizeQuantityModal('Mermaid', 140)">Add to Cart</button>
+        </div>
+
+        <div class="image-container">
+            <a href="Kebaya Collection.html"><img src="kebaya2.jpg" class="image" alt="Kesuma"></a>
+            <div class="hover-text">Kesuma</div>
+            <button class="add-to-cart-button" onclick="openSizeQuantityModal('Kesuma', 145)">Add to Cart</button>
+        </div>
+
+        <div class="image-container">
+            <a href="Kebaya Collection 3.html"><img src="kebayayanglain2.jpg" class="image" alt="Cindai"></a>
+            <div class="hover-text">Cindai</div>
+            <button class="add-to-cart-button" onclick="openSizeQuantityModal('Cindai', 147)">Add to Cart</button>
+        </div>
+    </div>
+
+    <CENTER><h1><i>KURUNG KEDAH COLLECTION</i></h1></CENTER>
+
+    <div class="gallery">
+        <div class="image-container">
+            <a  href="Kurung Kedah Collection.html"><img src="kkpink2.jpg" class="image" alt="Bunga"></a>
+            <div class="hover-text">Bunga</div>
+            <button class="add-to-cart-button" onclick="openSizeQuantityModal('Bunga', 123)">Add to Cart</button>
+        </div>
+
+        <div class="image-container">
+            <a href="Kurung Kedah Collection 2.html"><img src="kkbiru2.jpg" class="image" alt="Salama"></a>
+            <div class="hover-text">Salama</div>
+            <button class="add-to-cart-button" onclick="openSizeQuantityModal('Salma', 135)">Add to Cart</button>
+        </div>
+
+        <div class="image-container">
+            <a href="Kurung Kedah Collection 3.html"><img src="kkcoklat2.jpg" class="image" alt="Kuntum"></a>
+            <div class="hover-text">Kuntum</div>
+            <button class="add-to-cart-button" onclick="openSizeQuantityModal('Kuntum', 132)">Add to Cart</button>
+        </div>
+    </div>
+
+    <div id="size-quantity-modal" class="size-quantity-modal">
+        <div class="modal-content">
+            <h3>Select Size and Quantity</h3>
+            <select id="size-select">
+                <option value="XS">XS</option>
+                <option value="S">S</option>
+                <option value="M">M</option>
+                <option value="L">L</option>
+                <option value="XL">XL</option>
+            </select>
+            <input type="number" id="quantity-input" placeholder="Quantity" min="1" value="1">
+            <button id="add-to-cart-modal" onclick="addToCartFromModal()">Add to Cart</button>
+            <button onclick="toggleSizeQuantityModal()">Close</button>
+        </div>
+    </div>
+    <script>
+        let cart = JSON.parse(localStorage.getItem('cart')) || [];
+    
+        function openSizeQuantityModal(itemName, itemPrice) {
+            
+            window.currentItem = { name: itemName, price: itemPrice };
+            toggleSizeQuantityModal();
+        }
+    
+        function toggleSizeQuantityModal() {
+            const modal = document.getElementById('size-quantity-modal');
+            modal.style.display = modal.style.display === 'flex' ? 'none' : 'flex';
+        }
+    
+        function addToCartFromModal() {
+            const size = document.getElementById('size-select').value;
+            const quantity = parseInt(document.getElementById('quantity-input').value);
+    
+            if (!quantity || quantity <= 0) {
+                alert("Please choose a valid quantity.");
+                return;
+            }
+    
+            const item = window.currentItem;
+            const itemNameWithSize = `${item.name} (${size})`;
+    
+            
+            const existingItem = cart.find(cartItem => cartItem.name === itemNameWithSize);
+    
+            if (existingItem) {
+                
+                existingItem.quantity += quantity;
+            } else {
+                
+                cart.push({ name: itemNameWithSize, price: item.price, quantity: quantity });
+            }
+    
+            alert(`${quantity} item(s) of ${item.name} (${size}) added to cart!`);
+            updateCartDisplay();
+            saveCartToLocalStorage();
+            toggleSizeQuantityModal();
+        }
+    
+        function updateCartDisplay() {
+            const cartItemsContainer = document.getElementById('cart-items');
+            const cartTotalContainer = document.getElementById('cart-total');
+            const purchaseButton = document.getElementById('purchase-button');
+    
+            cartItemsContainer.innerHTML = '';  
+    
+            if (cart.length === 0) {
+                cartItemsContainer.innerHTML = '<p class="empty-cart">Your cart is empty.</p>';
+                cartTotalContainer.innerHTML = '';
+                purchaseButton.style.display = 'none';
+            } else {
+                let total = 0;
+                cart.forEach((item, index) => {
+                    const cartItem = document.createElement('div');
+                    cartItem.classList.add('cart-item');
+                    cartItem.innerHTML = `
+                        <p>${item.name} - RM${item.price} x ${item.quantity}</p>
+                        <button onclick="removeFromCart(${index})">Remove</button>
+                    `;
+                    cartItemsContainer.appendChild(cartItem);
+                    total += item.price * item.quantity;  
+                });
+    
+                cartTotalContainer.innerHTML = `<p>Total: RM${total}</p>`;
+                purchaseButton.style.display = 'block';
+            }
+        }
+    
+        function removeFromCart(index) {
+            cart.splice(index, 1);
+            updateCartDisplay();
+            saveCartToLocalStorage();
+        }
+    
+        function saveCartToLocalStorage() {
+            localStorage.setItem('cart', JSON.stringify(cart));
+        }
+    
+        function purchase() {
+            alert('Thank you for your purchase!');
+            cart = [];
+            updateCartDisplay();
+            saveCartToLocalStorage();
+        }
+    
+        function toggleCart() {
+            const cartContainer = document.getElementById('cart-container');
+            cartContainer.style.display = cartContainer.style.display === 'block' ? 'none' : 'block';
+        }
+    
+        updateCartDisplay();  
+        function purchase() {
+    
+    localStorage.setItem('cart', JSON.stringify(cart));
+
+    
+    window.location.href = 'CUSTOMER DETAIL.html';  
+}
+    </script>
+    <footer>
+      <P>Contact Us:</P>
+      <a href="https://www.instagram.com/busana2melisa" class="contact-item" target="_blank">
+        <img src="https://img.icons8.com/ios-filled/50/ffffff/instagram-new.png" alt="Instagram">
+      </a>
+      <a href="mailto:najihahsaiidan09@gmail.com" class="contact-item">
+        <img src="https://img.icons8.com/ios-filled/50/ffffff/new-post.png" alt="Email">
+      </a>
+      <p><sup>&copy;</sup> 2023 MELISA. All rights reserved.</p>
+    </footer>
+</font>
+</body>
+</html>

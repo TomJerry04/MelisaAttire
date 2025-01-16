@@ -1,0 +1,356 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8" />
+    <title> MALISA - HOT SALE! </title>
+</head>
+<style>
+  body {
+  margin: 0;
+  font-family: Arial, Helvetica, sans-serif;
+}
+header {
+    background-color: #e6c7d3;
+    color: white;
+    padding: 20px 0;
+    text-align: center;
+}
+h1 {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 2em;
+      margin: 0;
+    }
+
+    h1 img {
+      margin-left: 0px; 
+    }
+
+header:hover{
+    background-color: #ddd;
+    color: black;
+}
+
+.topnav {
+  overflow: hidden;
+  background-color: #e6c7d3;
+  justify-content: center;
+  display: flex;
+}
+.topnav {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: relative;
+}
+
+.cart-link {
+  position: absolute;
+  right: 0;
+  background-color: #dc91ae;
+  color: white;
+  border-radius: 5px;
+  padding: 10px 20px;
+  font-size: 16px;
+  text-decoration: none;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.cart-link:hover {
+  background-color: #882154;
+ 
+}
+.topnav a {
+  float: left ;
+  display: block;
+  color: #f2f2f2;
+  text-align: center;
+  padding: 14px 16px;
+  text-decoration: none;
+  font-size: 17px;
+  
+}
+
+.cart-button {
+    background-color: #a72874;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    padding: 10px 20px;
+    font-size: 16px;
+    cursor: pointer;
+}
+
+.cart-button:hover {
+    background-color: #d890b8;
+}
+
+.cart-container {
+    display: none;
+    position: fixed;
+    left: 50%;
+    transform: translateX(-50%);
+    top: 20px; 
+    z-index: 1000; 
+    background-color: white;
+    border: 1px solid #ddd;
+    border-radius: 10px;
+    padding: 10px;
+    width: 300px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.cart-container h3 {
+    margin-top: 0;
+    font-size: 18px;
+}
+
+.cart-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px 0;
+    border-bottom: 1px solid #ddd;
+}
+
+.cart-item:last-child {
+    border-bottom: none;
+}
+
+.cart-total {
+    text-align: right;
+    font-weight: bold;
+    margin-top: 10px;
+}
+
+.remove-button {
+    background-color: #dc3545;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    padding: 5px 10px;
+    cursor: pointer;
+    font-size: 12px;
+}
+
+.remove-button:hover {
+    background-color: #c82333;
+}
+
+.purchase-button {
+    background-color: #007bff;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    padding: 10px 20px;
+    cursor: pointer;
+    font-size: 16px;
+    display: block;
+    margin: 10px auto 0;
+    text-align: center;
+}
+
+.purchase-button:hover {
+    background-color: #0056b3;
+}
+
+.close-cart {
+    background-color: #6c757d;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    padding: 5px 10px;
+    font-size: 14px;
+    cursor: pointer;
+    float: right;
+}
+
+.close-cart:hover {
+    background-color: #5a6268;
+}
+
+.topnav a:hover {
+  background-color: #ddd;
+  color: black;
+}
+
+.topnav a.active {
+  background-color: #dc91ae;
+  color: white;
+}
+
+.topnav .icon {
+  display: none;
+}
+
+@media screen and (max-width: 600px) {
+  .topnav a:not(:first-child) {display: none;}
+  .topnav a.icon {
+    float: right;
+    display: block;
+  }
+}
+
+@media screen and (max-width: 600px) {
+  .topnav.responsive {position: relative;}
+  .topnav.responsive .icon {
+    position: absolute;
+    right: 0;
+    top: 0;
+  }
+  .topnav.responsive a {
+    float: none;
+    display: block;
+    text-align: left;
+  }
+}
+body {
+    background-image: url('wallpaper website.jpg');
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    background-size: cover;
+}
+.image-container img {
+      width: 50px; 
+      height: 50;
+      mask-image: url('mask.png') ; 
+      -webkit-mask-image: url('mask.png');
+      background: none
+      ;
+    }
+.no-bg {
+      mix-blend-mode: multiply; 
+      background-color: transparent; 
+    }
+    
+.bg {
+ 
+  background-image: url("thumbnail.jpg");
+
+  height: 50%;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+    }
+    audio {
+    display: none;
+  }
+</style>
+</head>
+<body>
+    <header>
+        <Font face="Times New Roman">
+        <h1>
+            Welcome to <a href="OUR COMPANY.html"><img src="Melisa 2.jpg" alt="Sample Image" class="no-bg" width="150" height="100"></a></h1>
+    </header>
+    <div class="topnav" id="myTopnav">
+        <a href="CONTENT.html" >Home</a>
+        <a href="COLLECTION.html" >Collection</a>
+        <a href="HOT SALE.html" class="active">Hot SALE!</a>
+        <a href="#" class="cart-link" onclick="toggleCart()">🛒</a>
+      </div>
+  
+      <div id="cart-container" class="cart-container">
+          <button class="close-cart" onclick="toggleCart()">Close</button>
+          <h3>Shopping Cart</h3>
+          <div id="cart-items" class="cart-items">
+              <p class="empty-cart">Your cart is empty.</p>
+          </div>
+          <div id="cart-total" class="cart-total"></div>
+          <button id="purchase-button" class="purchase-button" onclick="purchase()" style="display: none;">Purchase</button>
+      </div>
+  
+      <script>
+        let cart = JSON.parse(localStorage.getItem('cart')) || [];
+      
+        function addToCart(itemName, itemPrice) {
+            cart.push({ name: itemName, price: itemPrice });
+            updateCartDisplay();
+            saveCartToLocalStorage();
+        }
+      
+        function removeFromCart(index) {
+            cart.splice(index, 1);
+            updateCartDisplay();
+            saveCartToLocalStorage();
+        }
+      
+        function updateCartDisplay() {
+            const cartItemsContainer = document.getElementById('cart-items');
+            const cartTotalContainer = document.getElementById('cart-total');
+            const purchaseButton = document.getElementById('purchase-button');
+      
+            cartItemsContainer.innerHTML = '';
+      
+            if (cart.length === 0) {
+                cartItemsContainer.innerHTML = '<p class="empty-cart">Your cart is empty.</p>';
+                cartTotalContainer.textContent = '';
+                purchaseButton.style.display = 'none';
+                return;
+            }
+      
+            let total = 0;
+            cart.forEach((item, index) => {
+                total += item.price;
+                const itemElement = document.createElement('div');
+                itemElement.className = 'cart-item';
+                itemElement.innerHTML = `
+                    <span>${item.name} - $${item.price.toFixed(2)}</span>
+                    <button class="remove-button" onclick="removeFromCart(${index})">Remove</button>
+                `;
+                cartItemsContainer.appendChild(itemElement);
+            });
+      
+            cartTotalContainer.textContent = `Total: $${total.toFixed(2)}`;
+            purchaseButton.style.display = 'block';
+        }
+      
+        function toggleCart() {
+            const cartContainer = document.getElementById('cart-container');
+            cartContainer.style.display = cartContainer.style.display === 'block' ? 'none' : 'block';
+        }
+      
+        function purchase() {
+            if (cart.length === 0) {
+                alert("Your cart is empty!");
+                return;
+            }
+            alert("Thank you for your purchase! Total: $" + cart.reduce((sum, item) => sum + item.price, 0).toFixed(2));
+            cart.length = 0;
+            updateCartDisplay();
+            saveCartToLocalStorage();
+        }
+      
+        function saveCartToLocalStorage() {
+            localStorage.setItem('cart', JSON.stringify(cart));
+        }
+      
+        function loadCartFromLocalStorage() {
+            cart = JSON.parse(localStorage.getItem('cart')) || [];
+            updateCartDisplay();
+        }
+      
+        window.onload = loadCartFromLocalStorage;
+      </script>
+  
+          <i class="fa fa-bars"></i>
+      </div>
+    </Font>
+    <br>
+<div style="margin: 20px;">
+  <button class="cart-button" onclick="addToCart('Product 1', 29.99)">Add Product 1 ($29.99)</button>
+  <button class="cart-button" onclick="addToCart('Product 2', 19.99)">Add Product 2 ($19.99)</button>
+  <button class="cart-button" onclick="addToCart('Product 3', 9.99)">Add Product 3 ($9.99)</button>
+</div>
+<center>
+  <audio controls autoplay>
+    <source src="Maya Karin - Gebang (Magika OST) Official Lyric Video [ ezmp3.cc ].mp3" type="audio/ogg">
+    <source src="Maya Karin - Gebang (Magika OST) Official Lyric Video [ ezmp3.cc ].mp3" type="audio/mpeg">
+  </audio>
+  </center>
+</body>
+</html>
